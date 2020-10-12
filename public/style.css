@@ -1,0 +1,8 @@
+/* Table adjustments */
+.table td {
+    border-bottom: none;
+}
+
+#select_motor_vehicle img {
+    width: 10%;
+}
