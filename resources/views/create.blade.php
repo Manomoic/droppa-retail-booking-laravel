@@ -29,8 +29,8 @@
                                 <td colspan=" 2">Name</td>
                                 <td colspan="4">
                                     <input type="text" name="client_name"
-                                        class="form-control @error('client_name') is-invalid @enderror" 
-                                        value="{{ old('client_name') }}"/>
+                                        class="form-control @error('client_name') is-invalid @enderror"
+                                        value="{{ old('client_name') }}" />
                                     {{-- Throw an input error --}}
                                     @error('client_name')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -41,8 +41,8 @@
                                 <td colspan="2">Phone number</td>
                                 <td colspan="4">
                                     <input type="text" name="client_phone_number"
-                                        class="form-control @error('client_phone_number') is-invalid @enderror" 
-                                        value="{{ old('client_phone_number') }}"/>
+                                        class="form-control @error('client_phone_number') is-invalid @enderror"
+                                        value="{{ old('client_phone_number') }}" />
                                     {{-- Throw an input error --}}
                                     @error('client_phone_number')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -53,7 +53,7 @@
                                 <td>Pick Up Date</td>
                                 <td>
                                     <input type="date" class="form-control @error('pickup_date') is-invalid @enderror"
-                                         name="pickup_date" value="{{ old('pickup_date') }}"/>
+                                        name="pickup_date" value="{{ old('pickup_date') }}" />
                                     {{-- Throw an input error --}}
                                     @error('pickup_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -74,7 +74,8 @@
                                 <td colspan="4">
                                     <input type="number"
                                         class="form-control @error('number_of_labour') is-invalid @enderror"
-                                        name="number_of_labour" value="{{ old('number_of_labour') }}"/>
+                                        name="number_of_labour" id="number_of_labour"
+                                        value="{{ old('number_of_labour') }}" />
                                     {{-- Throw an input error --}}
                                     @error('number_of_labour')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -91,42 +92,37 @@
                     <div class="card-body">
                         <img src="{{ asset('img/default.jpg')}}" class="card-img-top img-fluid" alt="..."
                             id="select_motor_vehicle" />
-                        <div class="card-body">
 
-                            {{-- <h6 class="card-title text-center">Vehicle title</h6> --}}
+                        <select name="vehicle" id="vehicle" class="form-control @error('vehicle') is-invalid @enderror">
+                            <option value="Select a vehicle" onclick="imagesliderFN('{{ asset('img/default.jpg')}}')">
+                                Select
+                                Vehicle</option>
+                            <option value="Mini Van" onclick="imagesliderFN('{{ asset('img/mini_van.png')}}')"> Mini
+                                Van
+                            </option>
+                            <option value="1 Ton" onclick="imagesliderFN('{{ asset('img/one_ton.png')}}')"> 1 Ton
+                            </option>
+                            <option value="1.5 Ton" onclick="imagesliderFN('{{ asset('img/one_half_ton.png')}}')">
+                                1.5 Ton
+                            </option>
+                            <option value="4 Ton" onclick="imagesliderFN('{{ asset('img/four_ton.png')}}')">
+                                4 Ton
+                            </option>
+                            <option value="8 Ton" onclick="imagesliderFN('{{ asset('img/eight_ton.png')}}')">
+                                8 Ton
+                            </option>
+                            {{-- Throw an input error --}}
+                            @error('vehicle')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </select>
 
-                            {{-- <a type="button" class="btn btn-sm btn-light"
-                                onclick="imagesliderFN('{{ asset('img/mini_van.png')}}')">Mini Van</a>
-                            <a type="button" class="btn btn-sm btn-light"
-                                onclick="imagesliderFN('{{ asset('img/one_ton.png')}}')">1 Ton</a>
-                            <a type="button" class="btn btn-sm btn-light"
-                                onclick="imagesliderFN('{{ asset('img/one_half_ton.png')}}')">1.5 Ton</a> --}}
-
-                            <select name="vehicle" id="vehicle"
-                                class="form-control @error('vehicle') is-invalid @enderror">
-                                <option value="Select a vehicle"
-                                    onclick="imagesliderFN('{{ asset('img/default.jpg')}}')">Select
-                                    Vehicle</option>
-                                <option value="Mini Van" onclick="imagesliderFN('{{ asset('img/mini_van.png')}}')"> Mini
-                                    Van
-                                </option>
-                                <option value="1 Ton" onclick="imagesliderFN('{{ asset('img/one_ton.png')}}')"> 1 Ton
-                                </option>
-                                <option value="1.5 Ton" onclick="imagesliderFN('{{ asset('img/one_half_ton.png')}}')">
-                                    1.5 Ton
-                                </option>
-                                <option value="4 Ton" onclick="imagesliderFN('{{ asset('img/four_ton.png')}}')">
-                                    4 Ton
-                                </option>
-                                <option value="8 Ton" onclick="imagesliderFN('{{ asset('img/eight_ton.png')}}')">
-                                    8 Ton
-                                </option>
-                                {{-- Throw an input error --}}
-                                @error('vehicle')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </select>
-                        </div>
+                        <input type="text" class="form-control mt-2 @error('price') is-invalid @enderror" name="price"
+                            id="price" placeholder="Cost Price" value="{{ old('price') }}" />
+                        {{-- Throw an input error --}}
+                        @error('price')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -139,7 +135,8 @@
                                 <td colspan="2">Drop Off Address</td>
                                 <td colspan="4">
                                     <input type="text" name="dropoff_address"
-                                        class="form-control @error('dropoff_address') is-invalid @enderror" value="{{ old('dropoff_address') }}"/>
+                                        class="form-control @error('dropoff_address') is-invalid @enderror"
+                                        value="{{ old('dropoff_address') }}" />
                                     {{-- Throw an input error --}}
                                     @error('dropoff_address')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -150,7 +147,8 @@
                                 <td colspan="2">Name</td>
                                 <td colspan="4">
                                     <input type="text" name="courier_name"
-                                        class="form-control @error('courier_name') is-invalid @enderror" value="{{ old('courier_name') }}"/>
+                                        class="form-control @error('courier_name') is-invalid @enderror"
+                                        value="{{ old('courier_name') }}" />
                                     {{-- Throw an input error --}}
                                     @error('courier_name')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -162,8 +160,7 @@
                                 <td colspan="4">
                                     <input type="text"
                                         class="form-control @error('courier_phone_number') is-invalid @enderror"
-                                        value="{{ old('courier_phone_number') }}"
-                                        name="courier_phone_number" />
+                                        value="{{ old('courier_phone_number') }}" name="courier_phone_number" />
                                     {{-- Throw an input error --}}
                                     @error('courier_phone_number')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -173,8 +170,8 @@
                             <tr>
                                 <td colspan="2">Comment</td>
                                 <td colspan="4">
-                                    <textarea class="form-control @error('comments') is-invalid @enderror" name="comments"
-                                        placeholder="Leave an instruction for the driver"></textarea>
+                                    <textarea class="form-control @error('comments') is-invalid @enderror"
+                                        name="comments" placeholder="Leave an instruction for the driver"></textarea>
                                     {{-- Throw an input error --}}
                                     @error('comments')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -190,9 +187,5 @@
     </form>
 
 </section>
-
-<script>
-    const imagesliderFN = (image) => document.querySelector('#select_motor_vehicle').src = image;
-</script>
 
 @endsection

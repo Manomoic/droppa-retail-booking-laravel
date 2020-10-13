@@ -18,5 +18,7 @@ Route::get('/create_bookings', 'BookingsController@create')->name('create');
 Route::post('/store_bookings', 'BookingsController@store')->name('store');
 
 Route::get('/edit/{id}', 'BookingsController@edit')->name('edit');
+Route::get('/deactivate/{id}', 'BookingsController@deactivate')->name('deactivate');
+Route::get('/activate/{id}', 'BookingsController@activate')->name('activate');
 Route::put('/update/{id}', 'BookingsController@update')->name('update');
 Route::delete('/delete/{id}', 'BookingsController@delete')->name('delete');

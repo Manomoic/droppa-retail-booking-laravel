@@ -20,14 +20,15 @@ class CreateBookingsTable extends Migration
             $table->string('client_name');
             $table->string('client_phone_number');
             $table->string('pickup_date');
-            $table->string('pickup_time')->nullable();
+            $table->string('pickup_time');
             $table->string('courier_name');
             $table->string('courier_phone_number');
             $table->string('number_of_labour')->nullable();
             $table->text('comments')->nullable();
             $table->string('vehicle')->nullable();
-            $table->string('price')->nullable();
-
+            $table->float('price');
+            // $table->boolean('is_booking_active')->default(1);
+            $table->enum('is_booking_active', ['activated', 'deactivated'])->default('activated');
             $table->timestamps();
         });
     }

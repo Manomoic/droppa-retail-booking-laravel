@@ -16,21 +16,6 @@ class BookingsController extends Controller
     {
         $display_all_bookings = Bookings::all();
 
-        foreach ($display_all_bookings as $values) {
-            if (($values->vehicle === "8 Ton") ) {
-                $values->price = $values->number_of_labour * 420;
-            } else if ($values->vehicle === "1.5 Ton") {
-                $values->price = $values->number_of_labour * 320;
-            } else if ($values->vehicle === "1.5 Ton") {
-                $values->price = $values->number_of_labour * 120;
-            } else if ($values->vehicle === "1 Ton") {
-                $values->price = $values->number_of_labour * 100;
-            } else if ($values->vehicle === "Mini Van") {
-                $values->price = $values->number_of_labour * 70;
-            } else {
-                $values->price = 0;
-            }
-        }
         return view('index', compact('display_all_bookings'));
     }
 
@@ -55,6 +40,7 @@ class BookingsController extends Controller
         $saveBookings = new Bookings;
 
         $this->user_validation_script_save_and_update($request, $saveBookings, null);
+
         // Redirect page after saving record(s)
         return redirect(route('home'))->with('success_message', 'Your bookings were successfully saved!!!');
     }
@@ -78,6 +64,7 @@ class BookingsController extends Controller
     public function edit($id)
     {
         $editBookings = Bookings::findOrFail($id);
+
         return view('edit', compact('editBookings'))->withData($editBookings);
     }
 
@@ -91,9 +78,9 @@ class BookingsController extends Controller
     public function update(Request $request, $id)
     {
         $updateBooking = Bookings::find($id);
-        // $this->user_validation_script_save_and_update($request, $updateBooking, $id);
-        Bookings::where('id', $id)->update($this->validateUserForm());
-         // Redirect page after updating record(s)
+
+        $this->user_validation_script_save_and_update($request, $updateBooking, $id);
+        // Redirect page after updating record(s)
         return redirect(route('home'))->with('success_message', 'Your bookings were successfully updated!!!');
     }
 
@@ -106,7 +93,29 @@ class BookingsController extends Controller
     public function delete($id)
     {
         $editBookings = Bookings::findOrFail($id)->delete();
+        // flag the id to false
         return redirect(route('home'))->with('success_message', 'Your record was successfully deleted!!!');
+    }
+
+    /**
+     * Deactivate a booking
+     * @param  \App\Bookings  $bookings
+     */
+    public function deactivate($id)
+    {
+        Bookings::where('id', $id)->update(['is_booking_active' => 'deactivated']);
+
+        return redirect(route('home'))->with('success_message', 'Your record was successfully deactivated!!!');
+    }
+    /**
+     * Activate a booking
+     * @param  \App\Bookings  $bookings
+     */
+    public function activate($id)
+    {
+        Bookings::where('id', $id)->update(['is_booking_active' => 'activated']);
+
+        return redirect(route('home'))->with('success_message', 'Your record was successfully activated!!!');
     }
 
     protected function validateUserForm()
@@ -115,7 +124,7 @@ class BookingsController extends Controller
             "pickup_address" => 'required',
             "dropoff_address" => 'required',
             "client_name" => 'required',
-            "client_phone_number" => 'requiredmax:10',
+            "client_phone_number" => 'required|max:10',
             "pickup_date" => 'required',
             "pickup_time" => 'required',
             "courier_name" => 'required',
@@ -123,6 +132,7 @@ class BookingsController extends Controller
             "number_of_labour" => 'required',
             "comments" => 'required',
             "vehicle" => 'required',
+            "price" => 'required',
         ]);
     }
 
@@ -139,9 +149,14 @@ class BookingsController extends Controller
         $model->courier_name = $request->input('courier_name');
         $model->courier_phone_number = $request->input('courier_phone_number');
         $model->comments = $request->input('comments');
+        $model->price = $request->input('price');
+
         // check the form [method] - Save record(s)
         if ($request->isMethod('post')) {
             return $model->create($this->validateUserForm());
+        } else {
+            $model::where('id', $id)->update($this->validateUserForm());
+
         }
     }
 }
