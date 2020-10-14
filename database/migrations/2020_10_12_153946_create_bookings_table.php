@@ -23,7 +23,7 @@ class CreateBookingsTable extends Migration
             $table->string('pickup_time');
             $table->string('courier_name');
             $table->string('courier_phone_number');
-            $table->string('number_of_labour')->nullable();
+            $table->integer('number_of_labour')->nullable();
             $table->text('comments')->nullable();
             $table->string('vehicle')->nullable();
             $table->float('price');
