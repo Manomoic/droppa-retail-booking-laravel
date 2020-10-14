@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     {{-- CSS --}}
     <link rel="stylesheet" href="{{asset('style.css')}}">
+
 </head>
 
 <body>
@@ -27,6 +28,9 @@
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/1.0.0/mdb.min.js"></script>
     <script src="{{ asset('script.js') }}"></script>
+    <script>
+
+    </script>
 </body>
 
 </html>

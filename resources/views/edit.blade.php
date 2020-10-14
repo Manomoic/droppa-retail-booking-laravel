@@ -93,8 +93,7 @@
                         <img src="{{ asset('img/default.jpg')}}" class="card-img-top img-fluid" alt="..."
                             id="select_motor_vehicle" />
 
-                        <select name="vehicle" class="form-control @error('vehicle') is-invalid @enderror"
-                            value="{{ old('vehicle') }}">
+                        <select name="vehicle" id="vehicle" class="form-control @error('vehicle') is-invalid @enderror">
                             <option value="Select a vehicle" onclick="imagesliderFN('{{ asset('img/default.jpg')}}')">
                                 Select
                                 Vehicle</option>
@@ -118,8 +117,9 @@
                             @enderror
                         </select>
 
-                        <input type="text" class="form-control mt-2 @error('price') is-invalid @enderror" name="price"
-                            id="price" placeholder="Cost Price" value="{{ $editBookings->price }}" />
+                        {{-- <label for="price" name="price" id="price" class="form-control mt-2"></label> --}}
+                        <input type="text" class="form-control mt-2" name="price" id="price" placeholder="Cost Price"
+                            value="{{ old('price') }}" />
                         {{-- Throw an input error --}}
                         @error('price')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -182,11 +182,11 @@
                         </tbody>
                     </table>
                 </div>
-                <button class="btn btn-lg btn-primary float-right" type="submit">Update Bookings</button>
+                <button class="btn btn-lg btn-primary float-right" type="submit" id="updateButton">Update
+                    Bookings</button>
             </div>
         </div>
 
     </form>
 </section>
-
 @endsection

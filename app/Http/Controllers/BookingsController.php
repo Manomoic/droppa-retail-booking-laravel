@@ -156,7 +156,6 @@ class BookingsController extends Controller
             return $model->create($this->validateUserForm());
         } else {
             $model::where('id', $id)->update($this->validateUserForm());
-
         }
     }
 }
