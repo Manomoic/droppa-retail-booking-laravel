@@ -118,7 +118,7 @@
                         </select>
 
                         {{-- <label for="price" name="price" id="price" class="form-control mt-2"></label> --}}
-                        <input type="text" class="form-control mt-2" name="price" id="price" placeholder="Cost Price"
+                        <input type="hidden" class="form-control mt-2" name="price" id="price" placeholder="Cost Price"
                             value="{{ old('price') }}" />
                         {{-- Throw an input error --}}
                         @error('price')
