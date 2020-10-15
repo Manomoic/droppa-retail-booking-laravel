@@ -49,7 +49,7 @@
                                 @method('get')
                             </form>
                             <a type="button" class="btn btn-sm btn-outline-warning"
-                                onclick="document.querySelector('#activate-{{$bookings->id}}').submit()">Active</a>
+                                onclick="document.querySelector('#activate-{{$bookings->id}}').submit()">Activate</a>
                         </div>
                     </td>
                 </tr>
